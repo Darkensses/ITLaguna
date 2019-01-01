@@ -1,0 +1,35 @@
+
+  
+
+
+/* *********** Custom Style Code *********** */
+
+.menu__toggle, input[type="checkbox"]#menu__chk {
+    display: none;
+}
+
+.menu__main {
+  display: block;
+}
+
+@media (max-width: 991px){    
+
+  .menu__toggle {
+      display: initial;
+  }
+
+  .menu__main {
+    left: -100%;
+    position: absolute;
+  }
+
+  input[type="checkbox"]#menu__chk:checked ~ .menu__main {
+    left: 0;
+    position: relative;
+    width: 100%;
+    padding: 12px 0;
+    transition: 0.5s;
+    z-index: 666;
+    background: #E9E9E9;
+  }
+}

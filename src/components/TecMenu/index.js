@@ -1,14 +1,22 @@
 import React, {Component} from 'react';
 import Menu, {SubMenu, MenuItem} from 'rc-menu';
 
-import './index.css';
+import 'rc-menu/assets/index.css';
+import './styles.css'
+import MenuButton from './MenuButton';
 
 class TecMenu extends Component {
 
     state = {        
         width: 0,
-        height:0
+        height:0,
+        menuOpen:false        
     };
+
+    handleMenuClick(){
+        this.setState({menuOpen:!this.state.menuOpen});
+        console.log(this.state.menuOpen);
+    }
     
     updateDimensions = () => {
         this.setState({width: window.innerWidth, height: window.innerHeight});
@@ -24,9 +32,8 @@ class TecMenu extends Component {
     }
     render() { 
 
-        let menuMode = "horizontal";
-                
-        if (window.matchMedia("(max-width: 768px)").matches){
+        let menuMode = "horizontal";        
+        if (window.matchMedia("(max-width: 991px)").matches){
             menuMode = "inline"
             console.log("Mobile Menu");
         }
@@ -34,9 +41,14 @@ class TecMenu extends Component {
             menuMode = "horizontal"            
         }
 
-        return(
-            <div>                
+        return(            
+            <div>
+                <div className="menu__toggle">                    
+                    <label htmlFor="menu__chk"><MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()}/></label>
+                </div>                
+                <input type="checkbox" id="menu__chk"/>
                 <Menu 
+                className="menu__main"
                 mode={menuMode}
                 triggerSubMenuAction="click"
                 openAnimation="slide-up"

@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import TecMenu from './components/TecMenu';
+import TecNewsCard from './components/TecNewsCard';
 import logo from './logo.svg';
 import './App.css';
-import 'rc-menu/assets/index.css';
+
 
 class App extends Component {
 
   render() {
-
     
     return (
       <div className="App">
-        <TecMenu></TecMenu>      
+        <TecMenu></TecMenu>
+        <div>
+          <TecNewsCard/>
+        </div>      
       </div>
     );
   }

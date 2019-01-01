@@ -1,0 +1,41 @@
+.card__news {
+    width: 80%;
+    height: 200px;    
+    flex-flow: row;   
+    box-shadow: 0 10px 30px rgba(44, 62, 80, 0.5); 
+}
+
+.image__news {
+    width: 30%;
+    height: 100%;
+    background: #000;
+    border-radius: 0.25rem;
+}
+
+.content__news {
+    width: 70%;
+    margin: auto 20px auto 20px;        
+}
+
+.title__news {
+    text-align: left;
+    font-size: 4vmin;
+}
+
+.excerpt__news {
+    font-size: 2.25vmin;
+}
+
+.button__news{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vmin;
+    height: 6vmin;
+    background: #bda563;
+    border-radius: 50px;
+    text-decoration: none;
+    text-align: center;    
+    color: #ffffff;
+    font-size: 2vmin;
+}
