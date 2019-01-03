@@ -1,16 +1,23 @@
 import React, {Component} from 'react';
-import Menu, {SubMenu, MenuItem} from 'rc-menu';
+//import Menu, {SubMenu, MenuItem} from 'rc-menu';
 
-import 'rc-menu/assets/index.css';
+import Drawer from 'react-motion-drawer';
+
+//import Drawer from 'rc-drawer';
+//import 'rc-drawer/assets/index.css';
+
+//
 import './styles.css'
 import MenuButton from './MenuButton';
+import BaseMenu from './BaseMenu';
 
 class TecMenu extends Component {
 
     state = {        
         width: 0,
         height:0,
-        menuOpen:false        
+        menuOpen:false,
+        mobileView:false        
     };
 
     handleMenuClick(){
@@ -20,14 +27,26 @@ class TecMenu extends Component {
     
     updateDimensions = () => {
         this.setState({width: window.innerWidth, height: window.innerHeight});
+        if(this.state.width <= 991){
+            this.setState({mobileView: true});
+        }
+        else {
+            this.setState({mobileView: false}); 
+        }
     }
-    componentWillMount() {
+    componentWillMount = () => {
         this.updateDimensions();
     }
-    componentDidMount(){
-        window.addEventListener("resize", this.updateDimensions);
+    componentDidMount = () => {
+        window.addEventListener("resize", this.updateDimensions);   
+        if(this.state.width <= 991){
+            this.setState({mobileView: true});
+        }
+        else {
+            this.setState({mobileView: false}); 
+        }    
     }
-    componentWillUnmount() {
+    componentWillUnmount = () =>{
         window.removeEventListener("resize", this.updateDimensions);
     }
     render() { 
@@ -35,99 +54,36 @@ class TecMenu extends Component {
         let menuMode = "horizontal";        
         if (window.matchMedia("(max-width: 991px)").matches){
             menuMode = "inline"
+            
+
             console.log("Mobile Menu");
         }
         else{
-            menuMode = "horizontal"            
+            menuMode = "horizontal"
+                     
+        }        
+
+        //<Drawer open={this.state.menuOpen?true:false} onMaskClick={() => this.setState({menuOpen: false })} handler={false} width="40vw">
+
+        let menu = <BaseMenu menuMode={menuMode}/>;
+        if(this.state.mobileView){
+            menu = <div>
+                        <div className="menu__stick">
+                            <div className="menu__title"><h3>ITLaguna</h3></div>
+                            <MenuButton color="#FFF" open={this.state.menuOpen} onClick={()=>this.handleMenuClick()}/>
+                        </div>
+                        <Drawer className="menu__drawer" zIndex={665} open={this.state.menuOpen?true:false} onChange={opened => {this.setState({menuOpen: opened})}}>
+                            <BaseMenu menuMode={menuMode}/>
+                        </Drawer>                        
+                    </div>;
+        }
+        else {
+            menu = <BaseMenu menuMode={menuMode}/>;
         }
 
         return(            
             <div>
-                <div className="menu__toggle">                    
-                    <label htmlFor="menu__chk"><MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()}/></label>
-                </div>                
-                <input type="checkbox" id="menu__chk"/>
-                <Menu 
-                className="menu__main"
-                mode={menuMode}
-                triggerSubMenuAction="click"
-                openAnimation="slide-up"
-                >
-                    <MenuItem>Inicio</MenuItem>
-                    <SubMenu title="Quienes Somos">
-                        <MenuItem>Directorio</MenuItem>
-                        <MenuItem>Historia</MenuItem>
-                        <MenuItem>Vision y Misión</MenuItem>
-                        <MenuItem>Ubicación e Infraestructura</MenuItem>
-                        <MenuItem>Cuidado del Medio Ambiente</MenuItem>
-                        <MenuItem>Identidad</MenuItem>
-                        <MenuItem>Contacto</MenuItem>
-                        <MenuItem>Buzón</MenuItem>
-                    </SubMenu>
-                    <SubMenu title="Oferta Educativa">
-                        <SubMenu title={<span className="submenu-title-wrapper">Profesional Asociado</span>}>
-                            <MenuItem>P.A. En Energía Electrica</MenuItem>
-                            <MenuItem>P.A. En Energías Renovables</MenuItem>
-                        </SubMenu>
-                        <SubMenu title={<span className="submenu-title-wrapper">Nivel Licenciatura</span>}>
-                            <MenuItem>Ing. Eléctrica</MenuItem>
-                            <MenuItem>Ing. Electrónica</MenuItem>
-                            <MenuItem>Ing. En Energias Renovables</MenuItem>
-                            <MenuItem>Ing. Industrial</MenuItem>
-                            <MenuItem>Ing. Mecánica</MenuItem>
-                            <MenuItem>Ing. Mecatrónica</MenuItem>
-                            <MenuItem>Ing. Química</MenuItem>
-                            <MenuItem>Ing. Sistemas Computacionales</MenuItem>
-                            <MenuItem>Lic. Administración</MenuItem>
-                            <MenuItem>Ing. Gestión Empresarial</MenuItem>
-                        </SubMenu>
-                        <MenuItem>Nivel Posgrado</MenuItem>
-                    </SubMenu>
-                    <SubMenu title="Aspirantes">
-                        <MenuItem>Semestre de Nivelación</MenuItem>
-                        <MenuItem>Ingreso Licenciatura</MenuItem>
-                        <MenuItem>Ingreso Posgrado</MenuItem>
-                        <MenuItem>Ingreso Distancia</MenuItem>
-                    </SubMenu>
-                    <SubMenu title="Alumnado">
-                        <SubMenu title={<span className="submenu-title-wrapper">Div. De Estudios Profesionales</span>}>
-                            <MenuItem>Reingreso Licenciatura</MenuItem>
-                            <MenuItem>Veranos Licenciatura</MenuItem>
-                            <MenuItem>Reingreso Posgrado</MenuItem>
-                            <MenuItem>Reingreso Distancia</MenuItem>
-                            <MenuItem>Horarios Materias</MenuItem>
-                            <MenuItem>Exámen de Inglés</MenuItem>
-                            <MenuItem>Exámenes Especiales</MenuItem>
-                        </SubMenu>
-                        <SubMenu title={<span className="submenu-title-wrapper">Servicios Escolares</span>}>
-                            <MenuItem>Convocatorias</MenuItem>
-                            <MenuItem>Seguro Facultativo</MenuItem>
-                            <MenuItem>Estatus Alumno</MenuItem>
-                            <MenuItem>Requisitos Certificado</MenuItem>
-                            <MenuItem>Reglamento</MenuItem>
-                            <MenuItem>Titulación</MenuItem>
-                        </SubMenu>
-                        <SubMenu title={<span className="submenu-title-wrapper">Desarrollo Académico</span>}>
-                            <MenuItem>Evaluación al Profesorado</MenuItem>
-                            <MenuItem>Tutorías</MenuItem>
-                            <MenuItem>Calendario Escolar</MenuItem>
-                        </SubMenu>
-                        <SubMenu title={<span className="submenu-title-wrapper">Servicios Extraescolares</span>}>
-                            <MenuItem>Horario De Actividades Extraescolares</MenuItem>
-                        </SubMenu>
-                    </SubMenu>
-                    <SubMenu title="Personal">
-                        <MenuItem>Docentes</MenuItem>
-                        <MenuItem>Convocatorias</MenuItem>
-                        <MenuItem>Nueva Ley ISSSTE</MenuItem>
-                        <MenuItem>Reglamentos</MenuItem>
-                        <MenuItem>PRODEP</MenuItem>
-                    </SubMenu>
-                    <SubMenu title="Vinculación">
-                        <MenuItem>Servicios Externos</MenuItem>
-                        <MenuItem>Curso Introducción A Solidworks</MenuItem>
-                    </SubMenu>
-                </Menu>
+                {menu}            
                 <span>{this.state.width} x {this.state.height}</span>;
             </div>
         );
