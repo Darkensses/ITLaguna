@@ -12,7 +12,10 @@ class App extends Component {
     return (
       <div className="App">
         <TecMenu/>
-        <div>
+        <div className="card__container">
+          <TecNewsCard/>
+          <TecNewsCard/>
+          <TecNewsCard/>
           <TecNewsCard/>
         </div>      
       </div>

@@ -16,8 +16,20 @@ body {
     flex-direction: column;
 }
 
+.card__container {
+    display: flex;
+    flex-direction: column;
+}
+
 @media(max-width:991px){
     body {
         padding: 0;
+    }
+
+    .card__container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
     }
 }

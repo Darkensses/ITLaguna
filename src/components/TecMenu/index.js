@@ -84,7 +84,7 @@ class TecMenu extends Component {
         return(            
             <div>
                 {menu}            
-                <span>{this.state.width} x {this.state.height}</span>;
+                {/*<span>{this.state.width} x {this.state.height}</span>;*/}
             </div>
         );
     }
