@@ -1,0 +1,9 @@
+.tec__carousel {
+    margin-top: 1rem;
+}
+
+@media(max-width:991px){
+    .tec__carousel {
+        margin-top: 3rem;
+    }
+}
