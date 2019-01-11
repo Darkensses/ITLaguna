@@ -1,0 +1,47 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a, a:visited, a:active {
+    text-decoration: none;    
+}
+
+.div__side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;        
+    margin: 1rem 0;
+}
+
+.item__side {
+    display: flex;
+    width: 190px;        
+}
+
+.item__special {
+    flex-grow: 1;
+}
+
+.item__special__IE {
+    flex: 1;
+}
+
+.div__sites {
+    margin: 1rem 0;
+}
+
+.h3__title {
+    font-size: 20px;    
+}
+
+.border__dotted {
+    border-bottom: 1px dotted #bda563;
+    padding-bottom: 2px;    
+}
+
+.border__dotted > a {
+    font-size: 11px;    
+    color: #212121;
+}

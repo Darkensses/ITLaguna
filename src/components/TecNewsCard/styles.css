@@ -3,6 +3,7 @@
     height: 200px;
     flex-flow: row;
     box-shadow: 0 10px 30px rgba(44, 62, 80, 0.5);
+    margin: 1rem 0;
 }
 
 .image__news {
@@ -45,6 +46,7 @@
         flex-flow: column;
         width: 300px;
         height: 450px;
+        margin: 1rem;
     }
 
     .image__news {
