@@ -1,6 +1,7 @@
 import React from 'react';
 import Menu, {SubMenu, MenuItem} from 'rc-menu';
 import 'rc-menu/assets/index.css';
+import './styles.css';
 
 const BaseMenu = (props) => {
 

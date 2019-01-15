@@ -1,0 +1,16 @@
+.menu__main,  .rc-menu-submenu > .rc-menu, .rc-menu-item-selected {
+    background: #212121;
+    color: #F3F5F7;
+    border: none;
+}
+
+.rc-menu-horizontal > .rc-menu-submenu-active, .rc-menu-horizontal > .rc-menu-item-active {
+    border-bottom: 2px solid #bda563;
+    background-color: transparent;
+    color: #bda563;
+}
+
+.rc-menu-item-active, .rc-menu-submenu-active > .rc-menu-submenu-title {
+    background-color: #303030;
+    color: #bda563;
+}
